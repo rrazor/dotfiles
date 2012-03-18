@@ -2,4 +2,9 @@
 Self-explanatory.
 
 ## Installation
-Installation is manual, for now. Makefile or other magic to come!
+`make`
+
+This will install the dotfiles in your `$HOME`, attempting to preserve any
+existing files and backing them up with a `.bak` suffix.
+
+The makefile will cowardly refuse to overwite any existing `.bak` files.
