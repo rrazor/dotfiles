@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 
 REL=${1}
-SRC=$(readlink -f $REL)
+SRC=$(./abspath.py $REL)
 DEST="$HOME/$(basename $REL)"
 BAK="$DEST.bak"
 
