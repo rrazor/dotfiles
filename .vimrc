@@ -1,5 +1,8 @@
 " https://github.com/rrazor/dotfiles
 
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 filetype plugin indent on
 
 set nocompatible      " enhanced vim powers
@@ -22,11 +25,11 @@ set wildmenu          " bash-like tab-complete in ex mode
 set wildmode=list:longest
 set visualbell
 set nocursorline      " highlight the current line
-set number
+set nonumber          " no line numbers, use <leader>n to turn them on
 set ttyfast           " smoother redrawing, more characters sent
 set ruler             " CTRL-G shows less with statusline on
 set laststatus=2      " always show a status line for the last window
-set statusline=%F%m%r%h%w\ %30.([ff=%{&ff}/ft=%Y]\ [a=\%03.3b/h=\%02.2B]%)\ %40.((%4l,%4v)\ \ \ \ %3p%%\ \ %LL%)
+set statusline=%F%m%r%h%w\ %<\ %20.(%{&ff}/%Y%)\ \ %20.(\%03.3b/0x\%02.2B%)\ \ \ \ %=\ %4l,%-4v\%3p%%\ \ %LL
 set backspace=indent,eol,start
 set hlsearch
 set incsearch
@@ -122,6 +125,7 @@ let g:SuperTabLongestHighlight = 1
 
 " Load Align and set preferences
 runtime plugin/Align.vim
+runtime plugin/AlignMaps.vim
 call AlignCtrl( 'p2P2l:','=>', '=', ':' )
 
 " Restore cursor to last position when opening a file
