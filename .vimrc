@@ -29,7 +29,7 @@ set nonumber          " no line numbers, use <leader>n to turn them on
 set ttyfast           " smoother redrawing, more characters sent
 set ruler             " CTRL-G shows less with statusline on
 set laststatus=2      " always show a status line for the last window
-set statusline=%F%m%r%h%w\ %<\ %20.(%{&ff}/%Y%)\ \ %20.(\%03.3b/0x\%02.2B%)\ \ \ \ %=\ %4l,%-4v\%3p%%\ \ %LL
+set statusline=%#CursorLine#%-40.(%F%m%r%h%w%)\ \ \ %<%10.20([%{&ff}/%Y]%)%=\ \ \%03.3b/0x\%02.2B\ \ \ (%4l,%4v)\ \ \%3p%%\ %4LL
 set backspace=indent,eol,start
 set hlsearch
 set incsearch
