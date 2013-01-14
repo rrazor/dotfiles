@@ -1,8 +1,8 @@
 " https://github.com/rrazor/dotfiles
 
 filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+silent! call pathogen#runtime_append_all_bundles()
+silent! call pathogen#helptags()
 filetype plugin indent on
 
 set nocompatible      " enhanced vim powers
