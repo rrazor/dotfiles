@@ -19,3 +19,5 @@ if [ -z "$VIM" ]; then
 else
 	PS1="\[\e[1;31m\]\u@\h [\!] [vim]>\[\e[0m\] "
 fi
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
