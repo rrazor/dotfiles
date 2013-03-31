@@ -101,7 +101,9 @@ inoremap jj <ESC>
 
 syntax enable
 set t_Co=256
-colo clockwork
+set background=dark
+let base16colorspace=256
+colo base16-rrazor
 
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
