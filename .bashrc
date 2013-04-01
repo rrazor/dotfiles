@@ -15,7 +15,7 @@ vim_prompt () {
 	fi
 }
 
-export PS1="\[\e[1;30m\]\u@\[\e[1;31m\]\h"$(vim_prompt)"\[\e[0;0m\]> "
+export PS1="\[\e[1;30m\]\u@\[\e[1;36m\]\h"$(vim_prompt)"\[\e[0;0m\]> "
 
 alias ls="/bin/ls -F"
 alias du="du -cks"
