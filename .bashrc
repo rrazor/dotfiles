@@ -38,6 +38,10 @@ svnaddall () {
 	done | xargs --no-run-if-empty svn add
 }
 
+if [ -f ~/.bash.d/*/*.sh ]; then
+	source ~/.bash.d/*/*.sh
+fi
+
 if [ -f ~/.bash.extra.d/*/extra.sh ]; then
 	source ~/.bash.extra.d/*/extra.sh
 fi
