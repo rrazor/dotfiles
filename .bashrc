@@ -1,10 +1,26 @@
+#!/bin/bash
+
 if [ -f /etc/bash_completion ]; then
 	source /etc/bash_completion
 fi
 
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/bin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/pear:~/bin
+
 export EDITOR=vim
 export VISUAL=vim
+
+vim_prompt () {
+	if [ ! -z "$VIM" ]; then
+		echo " \[\e[1;30m\]vim"
+	fi
+}
+
+export PS1="\[\e[1;30m\]\u@\[\e[1;36m\]\h"$(vim_prompt)"\[\e[0;0m\]> "
+
+alias ls="/bin/ls -F"
+alias du="du -cks"
+alias vi="vim"
+alias reconf="cd ..; aclocal; autoheader; autoconf; automake -a; ./configure; make clean; make; cd src"
 
 case "$TERM" in
 xterm*|rxvt*)
@@ -14,8 +30,10 @@ xterm*|rxvt*)
     ;;
 esac
 
-if [ -z "$VIM" ]; then
-	PS1="\[\e[1;31m\]\u@\h [\!]>\[\e[0m\] "
-else
-	PS1="\[\e[1;31m\]\u@\h [\!] [vim]>\[\e[0m\] "
-fi
+svnaddall () {
+	local FILES=`svn st | grep '^?' | awk '{print $2}'`
+	for f in $FILES
+	do
+		[[ ! -L "$f" ]] && echo "$f@"
+	done | xargs --no-run-if-empty svn add
+}

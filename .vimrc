@@ -1,10 +1,5 @@
 " https://github.com/rrazor/dotfiles
 
-filetype off
-silent! call pathogen#runtime_append_all_bundles()
-silent! call pathogen#helptags()
-filetype plugin indent on
-
 set nocompatible      " enhanced vim powers
 set modelines=0       " block exploits (http://goo.gl/1jsAt)
 set tabstop=4         " CW standard, 4 spaces to a tab
@@ -29,7 +24,7 @@ set nonumber          " no line numbers, use <leader>n to turn them on
 set ttyfast           " smoother redrawing, more characters sent
 set ruler             " CTRL-G shows less with statusline on
 set laststatus=2      " always show a status line for the last window
-set statusline=%#CursorLine#%-40.(%f%m%r%h%w%)\ \ \ %<%10.20([%{&ff}/%Y]%)%=\ \ \%03.3b/0x\%02.2B\ \ \ (%4l,%4v)\ \ \%3p%%\ %4LL
+set statusline=%-40.(%f%m%r%h%w%)\ \ \ %<%10.20([%{&ff}/%Y]%)%=\ \ \%03.3b/0x\%02.2B\ \ \ (%4l,%4v)\ \ \%3p%%\ %4LL
 set backspace=indent,eol,start
 set hlsearch
 set incsearch
@@ -49,6 +44,7 @@ set mouse=a           " allows mouse in xterms
 " Show a popup menu for insert mode completion, always
 set completeopt=menu,menuone,longest
 set tags=./tags/all   " use exuberant ctags for completion, lookup
+set keywordprg=~/pear/pman   " PHP manual lookup
 set spellcapcheck=
 set nofoldenable
 
@@ -102,9 +98,18 @@ nnoremap ; :
 " jj is rare and works great for ESC
 inoremap jj <ESC>
 
+
+let php_baselib = 1
+let php_folding = 0
+let php_htmlInStrings = 0
+let php_no_shorttags = 1
+let php_parent_error_close = 1
+let php_sql_query = 0
 syntax enable
 set t_Co=256
-colo clockwork
+set background=dark
+let base16colorspace=256
+colo base16-rrazor
 
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
@@ -117,16 +122,35 @@ endfunc
 
 " Configuration for various plugins
 let g:debuggerPort = 51001
-let g:CommandTMatchWindowAtTop = 1
 let g:SuperTabDefaultCompletionType = 'context'
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 let g:SuperTabLongestHighlight = 1
+let g:CommandTMatchWindowReverse = 1
+let g:CommandTMaxHeight = 10
+let g:CommandTMinHeight = 10
+let g:CommandTAcceptSelectionMap = '<C-CR>'
+let g:CommandTAcceptSelectionSplitMap = '<CR>'
 
-" Load Align and set preferences
-runtime plugin/Align.vim
-runtime plugin/AlignMaps.vim
-call AlignCtrl( 'p2P2l:','=>', '=', ':' )
+if isdirectory( "./amm" )
+	let CommandTPathPrefx = "amm/"
+else
+	let CommandTPathPrefx = ""
+endif
+	
+
+
+nnoremap <silent> <Leader>. :CommandT<CR>
+execute "nnoremap <silent> <Leader>tc :CommandT " . "conf/<CR>"
+execute "nnoremap <silent> <Leader>th :CommandT " . CommandTPathPrefx . "htdocs/<CR>"
+execute "nnoremap <silent> <Leader>tl :CommandT " . CommandTPathPrefx . "lib/php/<CR>"
+execute "nnoremap <silent> <Leader>ts :CommandT " . CommandTPathPrefx . "schema/<CR>"
+execute "nnoremap <silent> <Leader>ts :CommandT " . CommandTPathPrefx . "schema/<CR>"
+execute "nnoremap <silent> <Leader>tt :CommandT " . CommandTPathPrefx . "templates/<CR>"
+execute "nnoremap <silent> <Leader>tT :CommandT " . "themes/<CR>"
+execute "nnoremap <silent> <Leader>tx :CommandT " . CommandTPathPrefx . "xml/<CR>"
+
+set wildignore+=.svn
 
 " Restore cursor to last position when opening a file
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -145,3 +169,14 @@ augroup PhpAuto
 	au!
 	au BufWritePost *.php call ValPhp()
 augroup END
+
+if filereadable(expand("~/.vim/vundles.vim"))
+	source ~/.vim/vundles.vim
+endif
+
+if exists(":Tabularize")
+	nnoremap <Leader>; :Tabularize /=/l2c2<CR>
+	vnoremap <Leader>; :Tabularize /=/l2c2<CR>
+	nnoremap <Leader>> :Tabularize /=>/l2c2<CR>
+	vnoremap <Leader>> :Tabularize /=>/l2c2<CR>
+endif

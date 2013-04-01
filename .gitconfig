@@ -1,0 +1,13 @@
+[alias]
+	s = status --short
+	st = status
+	ci = commit
+	l = log --pretty=oneline --abbrev-commit
+	co = checkout
+	di = diff
+[user]
+	name = Matt Gray
+	email = rrazor@gmail.com
+[http]
+[color]
+	diff = 1
