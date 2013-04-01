@@ -8,7 +8,7 @@ Bundle "gmarik/vundle"
 
 " Bundles
 Bundle "godlygeek/tabular"
-Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'wincent/Command-T'
 
 " These contain extras that are not meant for the public repos
 if filereadable(expand("~/.vim/vundles.extra.vim"))
