@@ -173,3 +173,7 @@ augroup END
 if filereadable(expand("~/.vim/vundles.vim"))
 	source ~/.vim/vundles.vim
 endif
+
+if exists(":Tabularize")
+	vmap <Leader>aa :Tabularize /=>\?/l2c2 <CR>
+endif
