@@ -157,11 +157,6 @@ execute "nnoremap <silent> <Leader>tx :CommandT " . CommandTPathPrefx . "xml/<CR
 
 set wildignore+=.svn
 
-" Load Align and set preferences
-runtime plugin/Align.vim
-runtime plugin/AlignMaps.vim
-call AlignCtrl( 'p2P2l:','=>', '=', ':' )
-
 " Restore cursor to last position when opening a file
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
@@ -179,3 +174,7 @@ augroup PhpAuto
 	au!
 	au BufWritePost *.php call ValPhp()
 augroup END
+
+if filereadable(expand("~/.vim/vundles.vim"))
+	source ~/.vim/vundles.vim
+endif
