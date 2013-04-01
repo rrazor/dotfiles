@@ -10,6 +10,14 @@ if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
 
+if [ -f ~/.bash.d/*.sh ]; then
+	source ~/.bash.d/*.sh
+fi
+
+if [ -f ~/.bash.extra.d/*/extra.sh ]; then
+	source ~/.bash.extra.d/*/extra.sh
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
