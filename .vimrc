@@ -1,10 +1,5 @@
 " https://github.com/rrazor/dotfiles
 
-filetype off
-silent! call pathogen#runtime_append_all_bundles()
-silent! call pathogen#helptags()
-filetype plugin indent on
-
 set nocompatible      " enhanced vim powers
 set modelines=0       " block exploits (http://goo.gl/1jsAt)
 set tabstop=4         " CW standard, 4 spaces to a tab
