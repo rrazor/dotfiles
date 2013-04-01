@@ -39,7 +39,6 @@ svnaddall () {
 }
 
 if [ -f ~/.bash.d/*.sh ]; then
-	echo "Running colors..."
 	source ~/.bash.d/*.sh
 fi
 
