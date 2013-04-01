@@ -175,8 +175,8 @@ if filereadable(expand("~/.vim/vundles.vim"))
 endif
 
 if exists(":Tabularize")
-	nmap <Leader>= :Tabularize /=/l2c2<CR>
-	vmap <Leader>= :Tabularize /=/l2c2<CR>
-	nmap <Leader>> :Tabularize /=>/l2c2<CR>
-	vmap <Leader>> :Tabularize /=>/l2c2<CR>
+	nnoremap <Leader>; :Tabularize /=/l2c2<CR>
+	vnoremap <Leader>; :Tabularize /=/l2c2<CR>
+	nnoremap <Leader>> :Tabularize /=>/l2c2<CR>
+	vnoremap <Leader>> :Tabularize /=>/l2c2<CR>
 endif
