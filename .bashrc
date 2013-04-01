@@ -38,8 +38,9 @@ svnaddall () {
 	done | xargs --no-run-if-empty svn add
 }
 
-if [ -f ~/.bash.d/*/*.sh ]; then
-	source ~/.bash.d/*/*.sh
+if [ -f ~/.bash.d/*.sh ]; then
+	echo "Running colors..."
+	source ~/.bash.d/*.sh
 fi
 
 if [ -f ~/.bash.extra.d/*/extra.sh ]; then
