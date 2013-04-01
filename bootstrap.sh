@@ -2,7 +2,7 @@
 #
 # From https://github.com/mathiasbynens/dotfiles/blob/master/bootstrap.sh
 cd "$(dirname "${BASH_SOURCE}")"
-git pull
+chmod 0755 .
 function doIt() {
 	rsync --exclude ".gitmodules" --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" -av . ~
 }
