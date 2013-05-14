@@ -92,9 +92,6 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-" ; is faster to type than :
-nnoremap ; :
-
 " jj is rare and works great for ESC
 inoremap jj <ESC>
 
@@ -179,4 +176,6 @@ if exists(":Tabularize")
 	vnoremap <Leader>; :Tabularize /=/l2c2<CR>
 	nnoremap <Leader>> :Tabularize /=>/l2c2<CR>
 	vnoremap <Leader>> :Tabularize /=>/l2c2<CR>
+	nnoremap <Leader>: :Tabularize /:/l2c2<CR>
+	vnoremap <Leader>: :Tabularize /:/l2c2<CR>
 endif
