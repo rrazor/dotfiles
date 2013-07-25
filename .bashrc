@@ -21,6 +21,7 @@ alias ls="/bin/ls -F"
 alias du="du -cks"
 alias vi="vim"
 alias reconf="cd ..; aclocal; autoheader; autoconf; automake -a; ./configure; make clean; make; cd src"
+alias tmux="TERM=xterm-256color tmux"
 
 case "$TERM" in
 xterm*|rxvt*)
