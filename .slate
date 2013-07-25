@@ -23,11 +23,5 @@ bind esc:cmd hint
 # Grid
 bind space:${hyper} grid padding:5 1920x1200:6,4 1680x1050:6,4
 
-# App switching
-bind a:${hyper} focus 'Adium'
-bind i:${hyper} focus 'iTerm'
-bind c:${hyper} focus 'Google Chrome'
-bind t:${hyper} focus 'Thunderbird'
-
 # Restart slate
 bind r:${hyper} relaunch
