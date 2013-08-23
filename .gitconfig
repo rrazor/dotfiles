@@ -5,6 +5,7 @@
 	l = log --pretty=oneline --abbrev-commit
 	co = checkout
 	di = diff
+	unstage = reset HEAD --
 [user]
 	name = Matt Gray
 	email = rrazor@gmail.com
