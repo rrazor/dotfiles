@@ -9,13 +9,28 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/pear:~/bin
 export EDITOR=vim
 export VISUAL=vim
 
+host_prompt () {
+	echo "\[\e[1;36m\]\h"
+}
+
+user_prompt () {
+	echo "\[\e[1;30m\]\u"
+}
+
 vim_prompt () {
 	if [ ! -z "$VIM" ]; then
 		echo " \[\e[1;30m\]vim"
 	fi
 }
 
-export PS1="\[\e[1;30m\]\u@\[\e[1;36m\]\h"$(vim_prompt)"\[\e[0;0m\]> "
+git_prompt () {
+	if [ -d ".git" ]; then
+		echo " \[\e[1;30m\]git:"$(git status -b --porcelain | awk '/^## / {print $2}' | tr -d '\n' | sed 's;[.][.][.].*$;;')
+	fi
+}
+
+
+export PS1=$(user_prompt)"@"$(host_prompt)$(git_prompt)$(vim_prompt)"\[\e[0;0m\]> "
 
 alias ls="/bin/ls -F"
 alias du="du -cks"
