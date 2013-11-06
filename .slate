@@ -16,6 +16,7 @@ bind j:${hyper}  push down  bar-resize:screenSizeY/2
 bind k:${hyper}  push up    bar-resize:screenSizeY/2
 bind l:${hyper}  push right bar-resize:screenSizeX/2
 bind ;:${hyper}  push right bar-resize:screenSizeX*2/3
+bind f:${hyper}  push left  bar-resize:screenSizeX
 
 # Window Hints
 bind esc:cmd hint
