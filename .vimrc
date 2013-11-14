@@ -5,7 +5,7 @@ set modelines=0       " block exploits (http://goo.gl/1jsAt)
 set tabstop=4         " CW standard, 4 spaces to a tab
 set shiftwidth=4      " see above
 set noexpandtab       " use hard tabs
-set encoding=utf-8 
+set encoding=utf-8
 set scrolloff=3       " scroll before ends of window
 set autoindent
 set smartindent
@@ -16,7 +16,7 @@ set cindent
 set cpo+=d            " use tags file relative to CWD, not file
 set cpo-=n            " don't use line number column for wrapped lines
 set showmode          " Indicate insert, visual, replace mode on screen
-set wildmenu          " bash-like tab-complete in ex mode 
+set wildmenu          " bash-like tab-complete in ex mode
 set wildmode=list:longest
 set visualbell
 set nocursorline      " highlight the current line
@@ -39,7 +39,7 @@ set formatoptions+=q  " allow formatting of comments with gq
 set formatoptions+=n  " recognize numbered lists with autoindent
 set formatoptions+=1  " don't break after one-letter word
 set list
-set listchars=tab:⋅\ ,eol:¬
+set listchars=tab:⋅\ ,eol:¬,trail:█
 set mouse=a           " allows mouse in xterms
 " Show a popup menu for insert mode completion, always
 set completeopt=menu,menuone,longest
