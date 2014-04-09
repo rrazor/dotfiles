@@ -29,14 +29,12 @@ git_prompt () {
 	fi
 }
 
-
 export PS1=$(user_prompt)"@"$(host_prompt)$(git_prompt)$(vim_prompt)"\[\e[0;0m\]> "
 
 alias ls="/bin/ls -F"
 alias du="du -cks"
 alias vi="vim"
 alias reconf="cd ..; aclocal; autoheader; autoconf; automake -a; ./configure; make clean; make; cd src"
-alias tmux="TERM=xterm-256color tmux"
 
 case "$TERM" in
 xterm*|rxvt*)
@@ -46,10 +44,8 @@ xterm*|rxvt*)
     ;;
 esac
 
-svnaddall () {
-	local FILES=`svn st | grep '^?' | awk '{print $2}'`
-	for f in $FILES
-	do
-		[[ ! -L "$f" ]] && echo "$f@"
-	done | xargs --no-run-if-empty svn add
-}
+# Python development
+export WORKON_HOME=$HOME/.virtualenvs
+if [ -e `which virtualenvwrapper.sh` ]; then
+	source `which virtualenvwrapper.sh`
+fi
