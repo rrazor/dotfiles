@@ -49,9 +49,13 @@ vim_prompt_text () {
 }
 
 git_prompt_text () {
-	if [ -d ".git" ]; then
-		echo " ("$(git status --porcelain | awk '/^## / {print $2}' | tr -d '\n' | sed 's;[.][.][.].*$;;')")"
+	if ! git rev-parse --git-dir > /dev/null 2>&1; then
+		return 0
 	fi
+
+	local git_branch=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
+
+	echo " (${git_branch})"
 }
 
 export PS1=$(build_prompt)
