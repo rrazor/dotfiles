@@ -8,28 +8,49 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/pear:~/bin
 
 export EDITOR=vim
 export VISUAL=vim
+export HISTTIMEFORMAT="%F %T "
 
-host_prompt () {
-	echo "\[\e[1;36m\]\h"
+build_prompt () {
+	local reset_color="\[\e[0;0m\]"
+
+	local at_color="\[\e[1;90m\]"
+	local at_prompt="${at_color}@${reset_color}"
+
+	local git_color="\[\e[0;35m\]"
+	local git_prompt="${git_color}\$(git_prompt_text)${reset_color}"
+
+	local host_color="\[\e[0;36m\]"
+	local host_prompt="${host_color}\h${reset_color}"
+
+	local user_color="\[\e[0;90m\]"
+	local user_prompt="${user_color}\$(user_prompt_text)${reset_color}"
+
+	local vim_prompt="\$(vim_prompt_text)"
+
+	echo "${user_prompt}${at_prompt}${host_prompt}${git_prompt}${vim_prompt}> "
 }
 
-user_prompt () {
-	echo "\[\e[1;30m\]\u"
+user_prompt_text () {
+	if [ "$USER" == "root" ]; then
+		printf "\e[1;31mroot"
+	else
+		echo "$USER"
+	fi
 }
 
-vim_prompt () {
+vim_prompt_text () {
 	if [ ! -z "$VIM" ]; then
-		echo " \[\e[1;30m\]vim"
+		printf " \e[4;33mvim\e[0;0m"
 	fi
 }
 
-git_prompt () {
+git_prompt_text () {
 	if [ -d ".git" ]; then
-		echo " \[\e[1;30m\]git:"$(git status -b --porcelain | awk '/^## / {print $2}' | tr -d '\n' | sed 's;[.][.][.].*$;;')
+		echo " ("$(git status -b --porcelain | awk '/^## / {print $2}' | tr -d '\n' | sed 's;[.][.][.].*$;;')")"
 	fi
 }
 
-export PS1=$(user_prompt)"@"$(host_prompt)$(git_prompt)$(vim_prompt)"\[\e[0;0m\]> "
+export PS1=$(build_prompt)
 
 alias ls="/bin/ls -F"
 alias du="du -cks"
