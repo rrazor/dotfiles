@@ -45,7 +45,7 @@ printf "\e]4;15;rgb:$color15\e\\"
 
 
 # 256 color space
-if [ "$TERM" != linux ]; then
+if [ "$TERM" != "linux" ]; then
   printf "\e]4;16;rgb:$color16\e\\"
   printf "\e]4;17;rgb:$color17\e\\"
   printf "\e]4;18;rgb:$color18\e\\"
