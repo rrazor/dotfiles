@@ -10,13 +10,27 @@ if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
 
-if [ -f ~/.bash.d/*.sh ]; then
+# Capture shopt nullglob setting
+prev_nullglob=$(shopt -p nullglob)
+# bashd and bash_extrad rely on nullglob set
+shopt -s nullglob
+
+bashd_files=( ~/.bash.d/*.sh )
+if [ ${#bashd_files[@]} -gt 0 ]; then
 	source ~/.bash.d/*.sh
 fi
+unset bashd_files
 
-if [ -f ~/.bash.extra.d/*/extra.sh ]; then
+bash_extrad_files=( ~/.bash.extra.d/*/extra.sh )
+if [ ${#bash_extrad_files[@]} -gt 0 ]; then
 	source ~/.bash.extra.d/*/extra.sh
 fi
+unset bash_extrad_files
+
+# Restore the shopt nullglob setting
+$prev_nullglob
+# Clean up
+unset prev_nullglob
 
 # set PATH so it includes user's private bin if it exists
 if [ -d ~/bin ] ; then
