@@ -20,7 +20,7 @@ build_prompt () {
 	local git_prompt="${git_color}\$(git_prompt_text)${reset_color}"
 
 	local host_color="\[\e[0;36m\]"
-	local host_prompt="${host_color}\h${reset_color}"
+	local host_prompt="${host_color}"$(host_prompt_text)"${reset_color}"
 
 	local user_color="\[\e[0;90m\]"
 	local user_prompt="${user_color}\$(user_prompt_text)${reset_color}"
@@ -28,6 +28,10 @@ build_prompt () {
 	local vim_prompt="\$(vim_prompt_text)"
 
 	echo "${user_prompt}${at_prompt}${host_prompt}${git_prompt}${vim_prompt}> "
+}
+
+host_prompt_text () {
+	echo "\h"
 }
 
 user_prompt_text () {
@@ -46,7 +50,7 @@ vim_prompt_text () {
 
 git_prompt_text () {
 	if [ -d ".git" ]; then
-		echo " ("$(git status -b --porcelain | awk '/^## / {print $2}' | tr -d '\n' | sed 's;[.][.][.].*$;;')")"
+		echo " ("$(git status --porcelain | awk '/^## / {print $2}' | tr -d '\n' | sed 's;[.][.][.].*$;;')")"
 	fi
 }
 
