@@ -17,13 +17,17 @@ shopt -s nullglob
 
 bashd_files=( ~/.bash.d/*.sh )
 if [ ${#bashd_files[@]} -gt 0 ]; then
-	source ~/.bash.d/*.sh
+	for f in "${bashd_files[@]}"; do
+		source $f
+	done
 fi
 unset bashd_files
 
 bash_extrad_files=( ~/.bash.extra.d/*/extra.sh )
 if [ ${#bash_extrad_files[@]} -gt 0 ]; then
-	source ~/.bash.extra.d/*/extra.sh
+	for f in "${bash_extrad_files[@]}"; do
+		source $f
+	done
 fi
 unset bash_extrad_files
 
