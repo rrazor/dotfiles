@@ -75,6 +75,6 @@ esac
 
 # Python development
 export WORKON_HOME=$HOME/.virtualenvs
-if [ -e `which virtualenvwrapper.sh` ]; then
+if which virtualenvwrapper.sh; then
 	source `which virtualenvwrapper.sh`
 fi
