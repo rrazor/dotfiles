@@ -11,6 +11,7 @@ export VISUAL=vim
 export HISTTIMEFORMAT="%F %T "
 
 build_prompt () {
+	local end_color="\[\e[0;90m\]"
 	local reset_color="\[\e[0;0m\]"
 
 	local at_color="\[\e[1;90m\]"
@@ -27,7 +28,7 @@ build_prompt () {
 
 	local vim_prompt="\$(vim_prompt_text)"
 
-	echo "${user_prompt}${at_prompt}${host_prompt}${git_prompt}${vim_prompt}> "
+	echo "${user_prompt}${at_prompt}${host_prompt}${git_prompt}${vim_prompt}${end_color}>${reset_color} "
 }
 
 user_prompt_text () {
