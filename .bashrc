@@ -14,7 +14,7 @@ build_prompt () {
 	local end_color="\[\e[0;90m\]"
 	local reset_color="\[\e[0;0m\]"
 
-	local at_color="\[\e[1;90m\]"
+	local at_color="\[\e[0;90m\]"
 	local at_prompt="${at_color}@${reset_color}"
 
 	local git_color="\[\e[0;35m\]"
@@ -76,6 +76,6 @@ esac
 
 # Python development
 export WORKON_HOME=$HOME/.virtualenvs
-if which virtualenvwrapper.sh; then
+if $(which virtualenvwrapper.sh); then
 	source `which virtualenvwrapper.sh`
 fi
