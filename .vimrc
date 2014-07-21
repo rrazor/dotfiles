@@ -179,3 +179,21 @@ if exists(":Tabularize")
 	nnoremap <Leader>: :Tabularize /:/l2c2<CR>
 	vnoremap <Leader>: :Tabularize /:/l2c2<CR>
 endif
+
+" bracketed paste mode
+" - Mac OS X requires 10.7 Apple Terminal or iTerm2 Build 1.0.0.20110908b
+" - Linux (xterm) requires bracketed paste mode extension feature
+" - http://stackoverflow.com/questions/5585129/pasting-code-into-terminal-window-into-vim-on-mac-os-x
+if &term =~ "xterm.*"
+    let &t_ti = &t_ti . "\e[?2004h"
+    let &t_te = "\e[?2004l" . &t_te
+    function XTermPasteBegin(ret)
+        set pastetoggle=<Esc>[201~
+        set paste
+        return a:ret
+    endfunction
+    map <expr> <Esc>[200~ XTermPasteBegin("i")
+    imap <expr> <Esc>[200~ XTermPasteBegin("")
+endif
+cmap <Esc>[200~ <nop>
+cmap <Esc>[201~ <nop>
