@@ -9,6 +9,7 @@ Bundle "gmarik/vundle"
 " Bundles
 Bundle "godlygeek/tabular"
 Bundle 'wincent/Command-T'
+Bundle 'shawncplus/phpcomplete.vim'
 
 " These contain extras that are not meant for the public repos
 if filereadable(expand("~/.vim/vundles.extra.vim"))
