@@ -141,7 +141,7 @@ nnoremap <silent> <Leader>. :CommandT<CR>
 execute "nnoremap <silent> <Leader>tc :CommandT " . "conf/<CR>"
 execute "nnoremap <silent> <Leader>th :CommandT " . CommandTPathPrefx . "htdocs/<CR>"
 execute "nnoremap <silent> <Leader>tl :CommandT " . CommandTPathPrefx . "lib/php/<CR>"
-execute "nnoremap <silent> <Leader>ts :CommandT " . CommandTPathPrefx . "schema/<CR>"
+execute "nnoremap <silent> <Leader>tv :CommandT " . CommandTPathPrefx . "vendor/<CR>"
 execute "nnoremap <silent> <Leader>ts :CommandT " . CommandTPathPrefx . "schema/<CR>"
 execute "nnoremap <silent> <Leader>tt :CommandT " . CommandTPathPrefx . "templates/<CR>"
 execute "nnoremap <silent> <Leader>tT :CommandT " . "themes/<CR>"
