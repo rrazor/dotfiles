@@ -6,7 +6,7 @@ chmod 0755 .
 git submodule update --init .vim/bundle/vundle
 function doIt() {
 	# -u will skip files newer on the receiving end
-	rsync --exclude ".gitmodules" --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" -a -v -u . ~
+	rsync --exclude ".gitmodules" --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "compare.sh" --exclude "README.md" -a -v -u . ~
 }
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt
