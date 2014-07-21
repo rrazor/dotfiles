@@ -20,16 +20,16 @@ let s:gui0E = "aa759f"
 let s:gui0F = "d27b53"
 
 " Terminal Base16 Color Definitions
-let s:cterm00 = "00"
-let s:cterm03 = "08"
-let s:cterm05 = "07"
-let s:cterm07 = "15"
-let s:cterm08 = "01"
-let s:cterm0A = "03"
-let s:cterm0B = "02"
-let s:cterm0C = "06"
-let s:cterm0D = "04"
-let s:cterm0E = "05"
+let s:cterm00 = "00" " dark gray
+let s:cterm03 = "08" " light gray
+let s:cterm05 = "07" " dim white
+let s:cterm07 = "15" " bright white
+let s:cterm08 = "01" " red
+let s:cterm0A = "03" " yellow
+let s:cterm0B = "02" " green
+let s:cterm0C = "06" " teal
+let s:cterm0D = "04" " blue
+let s:cterm0E = "05" " purple
 if exists('base16colorspace') && base16colorspace == "256"
   let s:cterm01 = "18"
   let s:cterm02 = "19"
@@ -172,12 +172,12 @@ call <SID>hi("SpellLocal",   s:gui05, s:gui00, s:cterm05, s:cterm0D, "")
 
 " Additional Diff Highlighting
 call <SID>hi("DiffAdd",      s:gui0B, s:gui00, s:cterm0B, s:cterm00, "")
-call <SID>hi("DiffChange",   s:gui0D, s:gui00, s:cterm0D, s:cterm00, "")
+call <SID>hi("DiffChange",   s:gui0A, s:gui00, s:cterm03, s:cterm0D, "")
 call <SID>hi("DiffDelete",   s:gui08, s:gui00, s:cterm08, s:cterm00, "")
-call <SID>hi("DiffText",     s:gui0D, s:gui00, s:cterm0D, s:cterm00, "")
+call <SID>hi("DiffText",     s:gui08, s:gui00, s:cterm07, s:cterm08, "")
 call <SID>hi("DiffAdded",    s:gui0B, s:gui00, s:cterm0B, s:cterm00, "")
-call <SID>hi("DiffFile",     s:gui08, s:gui00, s:cterm08, s:cterm00, "")
-call <SID>hi("DiffNewFile",  s:gui0B, s:gui00, s:cterm0B, s:cterm00, "")
+call <SID>hi("DiffFile",     s:gui0B, s:gui00, s:cterm0B, s:cterm00, "")
+call <SID>hi("DiffNewFile",  s:gui08, s:gui00, s:cterm08, s:cterm00, "")
 call <SID>hi("DiffLine",     s:gui0D, s:gui00, s:cterm0D, s:cterm00, "")
 call <SID>hi("DiffRemoved",  s:gui08, s:gui00, s:cterm08, s:cterm00, "")
 
