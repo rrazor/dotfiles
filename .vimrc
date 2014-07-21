@@ -120,9 +120,10 @@ endfunc
 " Configuration for various plugins
 let g:debuggerPort = 51001
 let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabMappingForward = '<s-tab>'
-let g:SuperTabMappingBackward = '<tab>'
+let g:SuperTabMappingForward = '<tab>'
+let g:SuperTabMappingBackward = '<s-tab>'
 let g:SuperTabLongestHighlight = 1
+let g:SuperTabCrMapping = 0
 let g:CommandTMatchWindowReverse = 1
 let g:CommandTMaxHeight = 10
 let g:CommandTMinHeight = 10
@@ -151,21 +152,6 @@ set wildignore+=.svn
 
 " Restore cursor to last position when opening a file
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
-" Check php syntax whenever you save
-function! ValPhp()
-	let s:results = system( "php -l " . expand("%") )
-	if match( s:results, "No syntax errors detected" ) != -1
-		return
-	else
-		echo s:results
-	endif
-endfunction
-
-augroup PhpAuto
-	au!
-	au BufWritePost *.php call ValPhp()
-augroup END
 
 if filereadable(expand("~/.vim/vundles.vim"))
 	source ~/.vim/vundles.vim
