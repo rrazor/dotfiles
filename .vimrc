@@ -96,12 +96,18 @@ vnoremap <F1> <ESC>
 inoremap jj <ESC>
 
 
+" php-specific syntax options
 let php_baselib = 1
 let php_folding = 0
 let php_htmlInStrings = 0
 let php_no_shorttags = 1
 let php_parent_error_close = 1
 let php_sql_query = 0
+
+" phpqa options
+let g:phpqa_messdetector_autorun = 0
+let g:phpqa_codesniffer_autorun = 0
+
 syntax enable
 set t_Co=256
 set background=dark
