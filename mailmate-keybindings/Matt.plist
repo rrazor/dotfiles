@@ -3,6 +3,8 @@
 	"n" = "newIMAPMailbox:";
 	"s" = "moveToMailbox:";
 	"w" = {
+		"e" = ("makeFirstResponder:", "messageView");
+		"m" = ("makeFirstResponder:", "mailboxesOutline", "goToMailbox:", "INBOX", "selectPreviousMailboxRow:", "selectNextMailboxRow:");
 		"w" = ("makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
 		"a" = ("goToMailbox:", "C4B7DB3E-74DC-4E8C-8B18-C7F7C69620A1", "makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
 		"i" = ("goToMailbox:", "INBOX", "makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
@@ -11,6 +13,9 @@
 	
 	"j" = "selectNextMessageRow:";
 	"k" = "selectPreviousMessageRow:";
+
+	"^@e" = "toggleEncryption:";
+	"^@E" = "toggleSigning:";
 	"@\U000D" = "send:";
 	"$\UF728" = "deleteMessage:";
 	"$\U0008" = "deleteMessage:";
