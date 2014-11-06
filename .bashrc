@@ -17,18 +17,21 @@ build_prompt () {
 	local at_color="\[\e[0;90m\]"
 	local at_prompt="${at_color}@${reset_color}"
 
-	local git_color="\[\e[0;35m\]"
-	local git_prompt="${git_color}\$(git_prompt_text)${reset_color}"
-
 	local host_color="\[\e[0;36m\]"
 	local host_prompt="${host_color}"$(host_prompt_text)"${reset_color}"
+
+	local dpwd_color="\[\e[0;90m\]"
+	local dpwd_prompt="${dpwd_color}\$(dpwd_prompt_text)${reset_color}"
+
+	local git_color="\[\e[0;35m\]"
+	local git_prompt="${git_color}\$(git_prompt_text)${reset_color}"
 
 	local user_color="\[\e[0;90m\]"
 	local user_prompt="${user_color}\$(user_prompt_text)${reset_color}"
 
 	local vim_prompt="\$(vim_prompt_text)"
 
-	echo "${user_prompt}${at_prompt}${host_prompt}${git_prompt}${vim_prompt}${end_color}>${reset_color} "
+	echo "${user_prompt}${at_prompt}${host_prompt}${dpwd_prompt}${git_prompt}${vim_prompt}${end_color}>${reset_color} "
 }
 
 host_prompt_text () {
@@ -40,6 +43,15 @@ user_prompt_text () {
 		printf "\e[1;31mroot"
 	else
 		echo "$USER"
+	fi
+}
+
+dpwd_prompt_text () {
+	if [ ! -z `declare -f -F dpwd` ]; then
+		local dpwd=`dpwd`
+		if [ ! -z "$dpwd" ]; then
+			echo " ${dpwd}"
+		fi
 	fi
 }
 
