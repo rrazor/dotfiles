@@ -12,3 +12,5 @@
 [http]
 [color]
 	diff = 1
+[push]
+	default = matching
