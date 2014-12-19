@@ -11,8 +11,10 @@ export VISUAL=vim
 export HISTTIMEFORMAT="%F %T "
 
 build_prompt () {
-	local end_color="\[\e[0;90m\]"
 	local reset_color="\[\e[0;0m\]"
+
+	local user_color="\[\e[\$(user_prompt_color)m\]"
+	local user_prompt="${user_color}\$(user_prompt_text)${reset_color}"
 
 	local at_color="\[\e[0;90m\]"
 	local at_prompt="${at_color}@${reset_color}"
@@ -20,29 +22,53 @@ build_prompt () {
 	local host_color="\[\e[0;36m\]"
 	local host_prompt="${host_color}"$(host_prompt_text)"${reset_color}"
 
-	local dpwd_color="\[\e[0;90m\]"
-	local dpwd_prompt="${dpwd_color}\$(dpwd_prompt_text)${reset_color}"
-
 	local git_color="\[\e[0;35m\]"
 	local git_prompt="${git_color}\$(git_prompt_text)${reset_color}"
 
-	local user_color="\[\e[0;90m\]"
-	local user_prompt="${user_color}\$(user_prompt_text)${reset_color}"
+	local vim_color="\[\e[4;33m\]"
+	local vim_prompt="${vim_color}\$(vim_prompt_text)${reset_color}"
 
-	local vim_prompt="\$(vim_prompt_text)"
+	local prompt_color="\[\e[\$(prompt_char_color)m\]"
+	local prompt_prompt="${prompt_color}\$(prompt_char_text)${reset_color}"
 
-	echo "${user_prompt}${at_prompt}${host_prompt}${dpwd_prompt}${git_prompt}${vim_prompt}${end_color}>${reset_color} "
+	echo "${user_prompt}${at_prompt}${host_prompt}${git_prompt}\$(vim_prompt_padding)${vim_prompt}${prompt_prompt} "
+}
+
+prompt_char_color () {
+	if [ "$USER" == "root" ]; then
+		echo "1;31"
+	else
+		echo "0;90"
+	fi
+}
+
+prompt_char_text () {
+	if [ "$USER" == "root" ]; then
+		echo "#"
+	else
+		echo ">"
+	fi
 }
 
 host_prompt_text () {
 	echo "\h"
 }
 
-user_prompt_text () {
+user_prompt_color () {
 	if [ "$USER" == "root" ]; then
-		printf "\e[1;31mroot"
+		printf "1;31"
 	else
-		echo "$USER"
+		printf "0;90"
+	fi
+}
+
+user_prompt_text () {
+	echo "$USER"
+}
+
+vim_prompt_padding () {
+	if [ ! -z "$VIM" ]; then
+		printf " "
 	fi
 }
 
@@ -57,7 +83,7 @@ dpwd_prompt_text () {
 
 vim_prompt_text () {
 	if [ ! -z "$VIM" ]; then
-		printf " \e[4;33mvim\e[0;0m"
+		printf "vim"
 	fi
 }
 
