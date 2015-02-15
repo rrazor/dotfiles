@@ -7,7 +7,14 @@ chmod 0755 .
 
 function doIt() {
 	# -u will skip files newer on the receiving end
-	rsync --exclude ".gitmodules" --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "compare.sh" --exclude "README.md" -a -v -u . ~
+	rsync --exclude ".gitmodules"           \
+	      --exclude ".git/"                 \
+	      --exclude ".DS_Store"             \
+	      --exclude "bootstrap.sh"          \
+	      --exclude "compare.sh"            \
+	      --exclude "README.md"             \
+	      --exclude "mailmate-keybindings/" \
+	      -a -v -u . ~
 
 	# Install Vundle, because its self-updates don't work if managed in
 	# another git repo
