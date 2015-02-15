@@ -1,6 +1,18 @@
 " https://github.com/rrazor/dotfiles
 
 set nocompatible      " enhanced vim powers
+
+" Begin Vundle
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+call vundle#end()
+filetype plugin indent on
+" End Vundle
+
 set modelines=0       " block exploits (http://goo.gl/1jsAt)
 set tabstop=4         " CW standard, 4 spaces to a tab
 set shiftwidth=4      " see above
@@ -141,7 +153,6 @@ if isdirectory( "./amm" )
 else
 	let CommandTPathPrefx = ""
 endif
-	
 
 
 nnoremap <silent> <Leader>. :CommandT<CR>
@@ -159,10 +170,6 @@ set wildignore+=.svn
 " Restore cursor to last position when opening a file
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-if filereadable(expand("~/.vim/vundles.vim"))
-	source ~/.vim/vundles.vim
-endif
-
 if exists(":Tabularize")
 	nnoremap <Leader>; :Tabularize /=/l2c2<CR>
 	vnoremap <Leader>; :Tabularize /=/l2c2<CR>
@@ -171,3 +178,12 @@ if exists(":Tabularize")
 	nnoremap <Leader>: :Tabularize /:/l2c2<CR>
 	vnoremap <Leader>: :Tabularize /:/l2c2<CR>
 endif
+
+" Airline
+let g:airline_powerline_fonts = 1
+" /Airline
+
+" CtrlP
+let g:ctrlp_map = '<leader>f'
+let g:ctrlp_cmd = 'CtrlPMixed'
+" /CtrlP
