@@ -11,6 +11,7 @@ Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/supertab'
+Plugin 'rking/ag.vim'
 call vundle#end()
 filetype plugin indent on
 " End Vundle
