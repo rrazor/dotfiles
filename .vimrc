@@ -9,6 +9,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
 call vundle#end()
 filetype plugin indent on
 " End Vundle
@@ -187,3 +188,11 @@ let g:airline_powerline_fonts = 1
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_cmd = 'CtrlPMixed'
 " /CtrlP
+
+" Syntastic
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" /Syntastic
