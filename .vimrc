@@ -10,6 +10,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'ervandew/supertab'
 call vundle#end()
 filetype plugin indent on
 " End Vundle
@@ -196,3 +197,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " /Syntastic
+
+" Supertab
+let g:SuperTabLongestHighlight = 1
+let g:SuperTabCrMapping = 1
+" /Supertab
