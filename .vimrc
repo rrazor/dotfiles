@@ -131,6 +131,14 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " Airline
 let g:airline_powerline_fonts = 1
+let g:airline#themes#base16#constant = 1
+function! AirlineInit()
+	let g:airline_section_a = airline#section#create([''])
+	let g:airline_section_x = airline#section#create(['%{&ff}/%Y'])
+	let g:airline_section_y = airline#section#create(['%03.3b/0x%02.2B'])
+	let g:airline_section_z = airline#section#create(['(%4l,%4v)', ' ', '%3p%%', ' ', '%LL'])
+endfunction
+autocmd VimEnter * call AirlineInit()
 " /Airline
 
 " CtrlP
@@ -141,7 +149,7 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 " Syntastic
 let g:syntastic_php_checkers = ['php']
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " /Syntastic
