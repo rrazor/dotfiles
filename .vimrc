@@ -132,6 +132,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " Airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline#themes#base16#constant = 1
 function! AirlineInit()
 	let g:airline_section_a = airline#section#create([''])
