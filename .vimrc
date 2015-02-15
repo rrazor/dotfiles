@@ -62,7 +62,7 @@ set keywordprg=~/pear/pman   " PHP manual lookup
 set spellcapcheck=
 set nofoldenable
 
-let mapleader = ","   " custom commands start with ,
+let mapleader = ','   " custom commands start with ,
 
 if v:version >= 703
 	set colorcolumn=
@@ -109,19 +109,6 @@ vnoremap <F1> <ESC>
 " jj is rare and works great for ESC
 inoremap jj <ESC>
 
-
-" php-specific syntax options
-let php_baselib = 1
-let php_folding = 0
-let php_htmlInStrings = 0
-let php_no_shorttags = 1
-let php_parent_error_close = 1
-let php_sql_query = 0
-
-" phpqa options
-let g:phpqa_messdetector_autorun = 0
-let g:phpqa_codesniffer_autorun = 0
-
 syntax enable
 set t_Co=256
 set background=dark
@@ -137,49 +124,10 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" Configuration for various plugins
-let g:debuggerPort = 51001
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabMappingForward = '<tab>'
-let g:SuperTabMappingBackward = '<s-tab>'
-let g:SuperTabLongestHighlight = 1
-let g:SuperTabCrMapping = 0
-let g:CommandTMatchWindowReverse = 1
-let g:CommandTMaxHeight = 10
-let g:CommandTMinHeight = 10
-let g:CommandTAcceptSelectionMap = '<C-CR>'
-let g:CommandTAcceptSelectionSplitMap = '<CR>'
-
-if isdirectory( "./amm" )
-	let CommandTPathPrefx = "amm/"
-else
-	let CommandTPathPrefx = ""
-endif
-
-
-nnoremap <silent> <Leader>. :CommandT<CR>
-execute "nnoremap <silent> <Leader>tc :CommandT " . "conf/<CR>"
-execute "nnoremap <silent> <Leader>th :CommandT " . CommandTPathPrefx . "htdocs/<CR>"
-execute "nnoremap <silent> <Leader>tl :CommandT " . CommandTPathPrefx . "lib/php/<CR>"
-execute "nnoremap <silent> <Leader>tv :CommandT " . CommandTPathPrefx . "vendor/<CR>"
-execute "nnoremap <silent> <Leader>ts :CommandT " . CommandTPathPrefx . "schema/<CR>"
-execute "nnoremap <silent> <Leader>tt :CommandT " . CommandTPathPrefx . "templates/<CR>"
-execute "nnoremap <silent> <Leader>tT :CommandT " . "themes/<CR>"
-execute "nnoremap <silent> <Leader>tx :CommandT " . CommandTPathPrefx . "xml/<CR>"
-
 set wildignore+=.svn
 
 " Restore cursor to last position when opening a file
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
-if exists(":Tabularize")
-	nnoremap <Leader>; :Tabularize /=/l2c2<CR>
-	vnoremap <Leader>; :Tabularize /=/l2c2<CR>
-	nnoremap <Leader>> :Tabularize /=>/l2c2<CR>
-	vnoremap <Leader>> :Tabularize /=>/l2c2<CR>
-	nnoremap <Leader>: :Tabularize /:/l2c2<CR>
-	vnoremap <Leader>: :Tabularize /:/l2c2<CR>
-endif
 
 " Airline
 let g:airline_powerline_fonts = 1
