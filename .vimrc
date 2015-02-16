@@ -66,6 +66,8 @@ set keywordprg=~/pear/pman   " PHP manual lookup
 set spellcapcheck=
 set spelllang=en_us
 set nofoldenable
+set splitright
+set splitbelow
 
 let mapleader = ','   " custom commands start with ,
 
@@ -114,6 +116,13 @@ vnoremap <F1> <ESC>
 " jj is rare and works great for ESC
 inoremap jj <ESC>
 
+" Navigate between buffers quickly
+nmap <c-l> :bnext<CR>
+nmap <c-h> :bprev<CR>
+nmap <leader>bd :bdelete<CR>
+nmap <leader>bn :new<CR>
+nmap <leader>bN :vnew<CR>
+
 syntax enable
 set t_Co=256
 set background=dark
@@ -138,6 +147,8 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#themes#base16#constant = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 function! AirlineInit()
 	let g:airline_section_a = airline#section#create([''])
 	let g:airline_section_x = airline#section#create(['%{&ff}/%Y'])
