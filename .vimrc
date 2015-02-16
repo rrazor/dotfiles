@@ -13,7 +13,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/supertab'
 Plugin 'rking/ag.vim'
-Plugin 'joshtronic/php.vim'
+Plugin 'StanAngeloff/php.vim'
 call vundle#end()
 
 filetype plugin indent on
