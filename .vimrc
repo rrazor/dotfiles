@@ -5,6 +5,7 @@ set nocompatible      " enhanced vim powers
 " Begin Vundle
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
+
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
@@ -12,9 +13,13 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/supertab'
 Plugin 'rking/ag.vim'
+Plugin 'joshtronic/php.vim'
 call vundle#end()
+
 filetype plugin indent on
 " End Vundle
+
+filetype plugin indent off  " Well-meaning features but ruin formatoptions=
 
 set modelines=0       " block exploits (http://goo.gl/1jsAt)
 set tabstop=4         " CW standard, 4 spaces to a tab
@@ -39,7 +44,8 @@ set nonumber          " no line numbers, use <leader>n to turn them on
 set ttyfast           " smoother redrawing, more characters sent
 set ruler             " CTRL-G shows less with statusline on
 set laststatus=2      " always show a status line for the last window
-set statusline=%-40.(%f%m%r%h%w%)\ \ \ %<%10.20([%{&ff}/%Y]%)%=\ \ \%03.3b/0x\%02.2B\ \ \ (%4l,%4v)\ \ \%3p%%\ %4LL
+" Superseded by Airline, but left here for reference
+"set statusline=%-40.(%f%m%r%h%w%)\ \ \ %<%10.20([%{&ff}/%Y]%)%=\ \ \%03.3b/0x\%02.2B\ \ \ (%4l,%4v)\ \ \%3p%%\ %4LL
 set backspace=indent,eol,start
 set hlsearch
 set incsearch
@@ -48,11 +54,8 @@ set smartcase         " searches case-sensitive only when uppercase present
 set wrap              " wrap file lines onscreen
 set textwidth=0       " allow file lines of any length
 set formatoptions=    " default was 'croql'
-set formatoptions+=c  " Auto-wrap comments
-set formatoptions+=r  " Insert comment leader in insert mode with <enter>
 set formatoptions+=q  " allow formatting of comments with gq
 set formatoptions+=n  " recognize numbered lists with autoindent
-set formatoptions+=1  " don't break after one-letter word
 set list
 set listchars=tab:⋅\ ,eol:¬,trail:█
 set mouse=a           " allows mouse in xterms
@@ -61,6 +64,7 @@ set completeopt=menu,menuone,longest
 set tags=./tags/all   " use exuberant ctags for completion, lookup
 set keywordprg=~/pear/pman   " PHP manual lookup
 set spellcapcheck=
+set spelllang=en_us
 set nofoldenable
 
 let mapleader = ','   " custom commands start with ,
@@ -72,7 +76,7 @@ endif
 
 " Quickly edit/reload the .vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>:AirlineRefresh<CR>
 
 " Clear search highlights
 nnoremap <leader>/ :noh<cr>:echo "search cleared"<cr>
@@ -84,7 +88,7 @@ nnoremap <leader>d :bd<CR>
 nnoremap <leader>l :set list!<CR>:set list?<CR>
 
 " Spell checking
-nnoremap <leader>sp :setlocal spell spelllang=en_us<cr>
+nnoremap <leader>sp :setlocal spell!<cr>:setlocal spell?<cr>
 
 " Tab jumps to matching brackets
 nnoremap <tab> %
