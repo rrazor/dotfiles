@@ -1,6 +1,26 @@
 " https://github.com/rrazor/dotfiles
 
 set nocompatible      " enhanced vim powers
+
+" Begin Vundle
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'ervandew/supertab'
+Plugin 'rking/ag.vim'
+Plugin 'StanAngeloff/php.vim'
+call vundle#end()
+
+filetype plugin indent on
+" End Vundle
+
+filetype plugin indent off  " Well-meaning features but ruin formatoptions=
+
 set modelines=0       " block exploits (http://goo.gl/1jsAt)
 set tabstop=4         " CW standard, 4 spaces to a tab
 set shiftwidth=4      " see above
@@ -24,7 +44,8 @@ set nonumber          " no line numbers, use <leader>n to turn them on
 set ttyfast           " smoother redrawing, more characters sent
 set ruler             " CTRL-G shows less with statusline on
 set laststatus=2      " always show a status line for the last window
-set statusline=%-40.(%f%m%r%h%w%)\ \ \ %<%10.20([%{&ff}/%Y]%)%=\ \ \%03.3b/0x\%02.2B\ \ \ (%4l,%4v)\ \ \%3p%%\ %4LL
+" Superseded by Airline, but left here for reference
+"set statusline=%-40.(%f%m%r%h%w%)\ \ \ %<%10.20([%{&ff}/%Y]%)%=\ \ \%03.3b/0x\%02.2B\ \ \ (%4l,%4v)\ \ \%3p%%\ %4LL
 set backspace=indent,eol,start
 set hlsearch
 set incsearch
@@ -33,11 +54,8 @@ set smartcase         " searches case-sensitive only when uppercase present
 set wrap              " wrap file lines onscreen
 set textwidth=0       " allow file lines of any length
 set formatoptions=    " default was 'croql'
-set formatoptions+=c  " Auto-wrap comments
-set formatoptions+=r  " Insert comment leader in insert mode with <enter>
 set formatoptions+=q  " allow formatting of comments with gq
 set formatoptions+=n  " recognize numbered lists with autoindent
-set formatoptions+=1  " don't break after one-letter word
 set list
 set listchars=tab:⋅\ ,eol:¬,trail:█
 set mouse=a           " allows mouse in xterms
@@ -46,9 +64,12 @@ set completeopt=menu,menuone,longest
 set tags=./tags/all   " use exuberant ctags for completion, lookup
 set keywordprg=~/pear/pman   " PHP manual lookup
 set spellcapcheck=
+set spelllang=en_us
 set nofoldenable
+set splitright
+set splitbelow
 
-let mapleader = ","   " custom commands start with ,
+let mapleader = ','   " custom commands start with ,
 
 if v:version >= 703
 	set colorcolumn=
@@ -57,7 +78,7 @@ endif
 
 " Quickly edit/reload the .vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>:AirlineRefresh<CR>
 
 " Clear search highlights
 nnoremap <leader>/ :noh<cr>:echo "search cleared"<cr>
@@ -69,7 +90,7 @@ nnoremap <leader>d :bd<CR>
 nnoremap <leader>l :set list!<CR>:set list?<CR>
 
 " Spell checking
-nnoremap <leader>sp :setlocal spell spelllang=en_us<cr>
+nnoremap <leader>sp :setlocal spell!<cr>:setlocal spell?<cr>
 
 " Tab jumps to matching brackets
 nnoremap <tab> %
@@ -95,18 +116,12 @@ vnoremap <F1> <ESC>
 " jj is rare and works great for ESC
 inoremap jj <ESC>
 
-
-" php-specific syntax options
-let php_baselib = 1
-let php_folding = 0
-let php_htmlInStrings = 0
-let php_no_shorttags = 1
-let php_parent_error_close = 1
-let php_sql_query = 0
-
-" phpqa options
-let g:phpqa_messdetector_autorun = 0
-let g:phpqa_codesniffer_autorun = 0
+" Navigate between buffers quickly
+nmap <c-l> :bnext<CR>
+nmap <c-h> :bprev<CR>
+nmap <leader>bd :bdelete<CR>
+nmap <leader>bn :new<CR>
+nmap <leader>bN :vnew<CR>
 
 syntax enable
 set t_Co=256
@@ -123,69 +138,40 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" Configuration for various plugins
-let g:debuggerPort = 51001
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabMappingForward = '<tab>'
-let g:SuperTabMappingBackward = '<s-tab>'
-let g:SuperTabLongestHighlight = 1
-let g:SuperTabCrMapping = 0
-let g:CommandTMatchWindowReverse = 1
-let g:CommandTMaxHeight = 10
-let g:CommandTMinHeight = 10
-let g:CommandTAcceptSelectionMap = '<C-CR>'
-let g:CommandTAcceptSelectionSplitMap = '<CR>'
-
-if isdirectory( "./amm" )
-	let CommandTPathPrefx = "amm/"
-else
-	let CommandTPathPrefx = ""
-endif
-	
-
-
-nnoremap <silent> <Leader>. :CommandT<CR>
-execute "nnoremap <silent> <Leader>tc :CommandT " . "conf/<CR>"
-execute "nnoremap <silent> <Leader>th :CommandT " . CommandTPathPrefx . "htdocs/<CR>"
-execute "nnoremap <silent> <Leader>tl :CommandT " . CommandTPathPrefx . "lib/php/<CR>"
-execute "nnoremap <silent> <Leader>tv :CommandT " . CommandTPathPrefx . "vendor/<CR>"
-execute "nnoremap <silent> <Leader>ts :CommandT " . CommandTPathPrefx . "schema/<CR>"
-execute "nnoremap <silent> <Leader>tt :CommandT " . CommandTPathPrefx . "templates/<CR>"
-execute "nnoremap <silent> <Leader>tT :CommandT " . "themes/<CR>"
-execute "nnoremap <silent> <Leader>tx :CommandT " . CommandTPathPrefx . "xml/<CR>"
-
 set wildignore+=.svn
 
 " Restore cursor to last position when opening a file
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-if filereadable(expand("~/.vim/vundles.vim"))
-	source ~/.vim/vundles.vim
-endif
+" Airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#themes#base16#constant = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+function! AirlineInit()
+	let g:airline_section_a = airline#section#create([''])
+	let g:airline_section_x = airline#section#create(['%{&ff}/%Y'])
+	let g:airline_section_y = airline#section#create(['%03.3b/0x%02.2B'])
+	let g:airline_section_z = airline#section#create(['(%4l,%4v)', ' ', '%3p%%', ' ', '%LL'])
+endfunction
+autocmd VimEnter * call AirlineInit()
+" /Airline
 
-if exists(":Tabularize")
-	nnoremap <Leader>; :Tabularize /=/l2c2<CR>
-	vnoremap <Leader>; :Tabularize /=/l2c2<CR>
-	nnoremap <Leader>> :Tabularize /=>/l2c2<CR>
-	vnoremap <Leader>> :Tabularize /=>/l2c2<CR>
-	nnoremap <Leader>: :Tabularize /:/l2c2<CR>
-	vnoremap <Leader>: :Tabularize /:/l2c2<CR>
-endif
+" CtrlP
+let g:ctrlp_map = '<leader>f'
+let g:ctrlp_cmd = 'CtrlPMixed'
+" /CtrlP
 
-" bracketed paste mode
-" - Mac OS X requires 10.7 Apple Terminal or iTerm2 Build 1.0.0.20110908b
-" - Linux (xterm) requires bracketed paste mode extension feature
-" - http://stackoverflow.com/questions/5585129/pasting-code-into-terminal-window-into-vim-on-mac-os-x
-if &term =~ "xterm.*"
-    let &t_ti = &t_ti . "\e[?2004h"
-    let &t_te = "\e[?2004l" . &t_te
-    function XTermPasteBegin(ret)
-        set pastetoggle=<Esc>[201~
-        set paste
-        return a:ret
-    endfunction
-    map <expr> <Esc>[200~ XTermPasteBegin("i")
-    imap <expr> <Esc>[200~ XTermPasteBegin("")
-endif
-cmap <Esc>[200~ <nop>
-cmap <Esc>[201~ <nop>
+" Syntastic
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" /Syntastic
+
+" Supertab
+let g:SuperTabLongestHighlight = 1
+let g:SuperTabCrMapping = 1
+" /Supertab

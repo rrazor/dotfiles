@@ -111,9 +111,3 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
-# Python development
-export WORKON_HOME=$HOME/.virtualenvs
-if $(which virtualenvwrapper.sh); then
-	source `which virtualenvwrapper.sh`
-fi
