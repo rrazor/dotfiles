@@ -1,18 +1,22 @@
 {
-	"g" = "goToMailbox:";
-	"n" = "newIMAPMailbox:";
-	"s" = "moveToMailbox:";
-	"w" = {
-		"e" = ("makeFirstResponder:", "messageView");
-		"m" = ("makeFirstResponder:", "mailboxesOutline", "goToMailbox:", "INBOX", "selectPreviousMailboxRow:", "selectNextMailboxRow:");
-		"w" = ("makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
+	"g" = {
 		"a" = ("goToMailbox:", "C4B7DB3E-74DC-4E8C-8B18-C7F7C69620A1", "makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
+		"e" = ("makeFirstResponder:", "messageView");
+		"g" = ("makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
 		"i" = ("goToMailbox:", "INBOX", "makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
+		"m" = "goToMailbox:";
 		"u" = ("goToMailbox:", "EA2F402D-416F-41F6-83C2-F4A3923EB706", "makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
 	};
+
+	"G" = ("makeFirstResponder:", "mainOutline", "selectLastMessageRow:");
+
+	"n" = "newIMAPMailbox:";
+	"s" = "moveToMailbox:";
 	
 	"j" = "selectNextMessageRow:";
 	"k" = "selectPreviousMessageRow:";
+	"h" = ("makeFirstResponder:", "mailboxesOutline", "goToMailbox:", "INBOX", "selectPreviousMailboxRow:", "selectNextMailboxRow:");
+	"l" = ("makeFirstResponder:", "mainOutline");
 
 	"^@e" = "toggleEncryption:";
 	"^@E" = "toggleSigning:";
@@ -20,4 +24,5 @@
 	"$\UF728" = "deleteMessage:";
 	"$\U0008" = "deleteMessage:";
 	"@k" = "mailboxSearch:";
+	"/" = "mailboxSearch:";
 }
