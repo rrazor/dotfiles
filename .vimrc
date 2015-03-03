@@ -14,6 +14,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/supertab'
 Plugin 'rking/ag.vim'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'bufkill.vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -86,7 +87,9 @@ nnoremap <leader>n :set nu!<CR>:set nu?<CR>
 nnoremap <leader>ai :set autoindent!<CR>:set autoindent?<CR>
 nnoremap <leader>p :set paste!<CR>:set paste?<CR>
 nnoremap <leader>b :ls<CR>
-nnoremap <leader>d :bd<CR>
+nnoremap <leader>d :BD<CR>
+nnoremap <leader>c :close<CR>
+nnoremap <leader>q :q<CR>
 nnoremap <leader>l :set list!<CR>:set list?<CR>
 
 " Spell checking
@@ -160,7 +163,8 @@ autocmd VimEnter * call AirlineInit()
 
 " CtrlP
 let g:ctrlp_map = '<leader>f'
-let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = ''
 " /CtrlP
 
 " Syntastic
