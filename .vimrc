@@ -86,11 +86,11 @@ nnoremap <leader>/ :noh<cr>:echo "search cleared"<cr>
 nnoremap <leader>n :set nu!<CR>:set nu?<CR>
 nnoremap <leader>ai :set autoindent!<CR>:set autoindent?<CR>
 nnoremap <leader>p :set paste!<CR>:set paste?<CR>
-nnoremap <leader>b :ls<CR>
 nnoremap <leader>d :BD<CR>
 nnoremap <leader>c :close<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>l :set list!<CR>:set list?<CR>
+nnoremap <leader>f :CtrlP 
 
 " Spell checking
 nnoremap <leader>sp :setlocal spell!<cr>:setlocal spell?<cr>
@@ -162,7 +162,7 @@ autocmd VimEnter * call AirlineInit()
 " /Airline
 
 " CtrlP
-let g:ctrlp_map = '<leader>f'
+let g:ctrlp_map = ''
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = ''
 " /CtrlP
