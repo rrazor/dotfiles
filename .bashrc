@@ -72,6 +72,15 @@ vim_prompt_padding () {
 	fi
 }
 
+dpwd_prompt_text () {
+	if [ ! -z `declare -f -F dpwd` ]; then
+		local dpwd=`dpwd`
+		if [ ! -z "$dpwd" ]; then
+			echo " ${dpwd}"
+		fi
+	fi
+}
+
 vim_prompt_text () {
 	if [ ! -z "$VIM" ]; then
 		printf "vim"
