@@ -15,8 +15,8 @@
 	
 	"j" = "selectNextMessageRow:";
 	"k" = "selectPreviousMessageRow:";
-	"h" = ("makeFirstResponder:", "mailboxesOutline", "goToMailbox:", "INBOX", "selectPreviousMailboxRow:", "selectNextMailboxRow:");
-	"l" = ("makeFirstResponder:", "mainOutline");
+	"^h" = ("makeFirstResponder:", "mailboxesOutline", "goToMailbox:", "INBOX", "selectPreviousMailboxRow:", "selectNextMailboxRow:");
+	"^l" = ("makeFirstResponder:", "mainOutline");
 
 	"^@e" = "toggleEncryption:";
 	"^@E" = "toggleSigning:";
