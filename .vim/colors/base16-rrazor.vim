@@ -114,7 +114,7 @@ if &background == "dark"
   call <SID>hi("TabLine",       s:gui03, s:gui01, s:cterm03, s:cterm01, "none")
   call <SID>hi("TabLineFill",   s:gui03, s:gui01, s:cterm03, s:cterm01, "none")
   call <SID>hi("TabLineSel",    s:gui0B, s:gui01, s:cterm0B, s:cterm01, "none")
-  call <SID>hi("OverLength",    s:gui05, s:gui01, s:cterm05, s:cterm02, "")
+  call <SID>hi("OverLength",         "", s:gui01,        "", s:cterm01, "")
 else
   call <SID>hi("Cursor",        s:gui00, s:gui02, s:cterm00, s:cterm02, "")
   call <SID>hi("NonText",       s:gui05, "", s:cterm05, "", "")
@@ -134,7 +134,7 @@ else
   call <SID>hi("TabLine",       s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
   call <SID>hi("TabLineFill",   s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
   call <SID>hi("TabLineSel",    s:gui0B, s:gui01, s:cterm0B, s:cterm01, "reverse")
-  call <SID>hi("OverLength",    s:gui05, s:gui01, s:cterm02, s:cterm02, "")
+  call <SID>hi("OverLength",         "", s:gui01,        "", s:cterm01, "")
 endif
 
 " Standard Syntax Highlighting

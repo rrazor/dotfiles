@@ -9,12 +9,15 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
+Plugin 'ivalkeen/vim-ctrlp-tjump'
 Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/supertab'
 Plugin 'rking/ag.vim'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'bufkill.vim'
+Plugin 'godlygeek/tabular'
 call vundle#end()
 
 filetype plugin indent on
@@ -83,14 +86,19 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>:AirlineRefresh<CR>
 
 " Clear search highlights
 nnoremap <leader>/ :noh<cr>:echo "search cleared"<cr>
-nnoremap <leader>n :set nu!<CR>:set nu?<CR>
-nnoremap <leader>ai :set autoindent!<CR>:set autoindent?<CR>
-nnoremap <leader>p :set paste!<CR>:set paste?<CR>
+nnoremap <leader>n :setlocal nu!<CR>:setlocal nu?<CR>
+nnoremap <leader>ai :setlocal autoindent!<CR>:setlocal autoindent?<CR>
+nnoremap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
 nnoremap <leader>d :BD<CR>
 nnoremap <leader>c :close<CR>
 nnoremap <leader>q :q<CR>
-nnoremap <leader>l :set list!<CR>:set list?<CR>
+nnoremap <leader>l :setlocal list!<CR>:setlocal list?<CR>
 nnoremap <leader>f :CtrlP 
+nnoremap <leader>t :CtrlPTag<CR>
+nnoremap <leader>v R✓<esc>
+nnoremap <c-]> :CtrlPtjump<CR>
+vnoremap <c-]> :CtrlPtjumpVisual<CR>
+nnoremap <c-\> *:noh<CR>:AgFromSearch 
 
 " Spell checking
 nnoremap <leader>sp :setlocal spell!<cr>:setlocal spell?<cr>
@@ -116,15 +124,20 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-" jj is rare and works great for ESC
-inoremap jj <ESC>
-
 " Navigate between buffers quickly
-nmap <c-l> :bnext<CR>
-nmap <c-h> :bprev<CR>
+nmap <M-J> :bnext<CR>
+nmap ∆ :bnext<CR>
+nmap <M-K> :bprev<CR>
+nmap ˚ :bprev<CR>
 nmap <leader>bd :bdelete<CR>
 nmap <leader>bn :new<CR>
 nmap <leader>bN :vnew<CR>
+
+" Navigate between windows quickly
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
+nmap <c-j> <c-w>j
+nmap <c-k> <c-w>k
 
 syntax enable
 set t_Co=256
@@ -144,11 +157,47 @@ endfunc
 set wildignore+=.svn
 
 " Restore cursor to last position when opening a file
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup bufreadpost_lastline
+	autocmd!
+	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+augroup highlight_long_lines
+	autocmd!
+	" Highlight the portion of a line over 80 characters
+	autocmd FileType php match OverLength /\%>80v.\+/
+augroup END
+
+augroup filetype_text
+	autocmd!
+	autocmd FileType text setlocal expandtab
+	autocmd FileType text setlocal nowrap
+augroup END
+
+augroup filetype_markdown
+	autocmd!
+	autocmd FileType markdown setlocal expandtab
+	autocmd FileType markdown setlocal nowrap
+	autocmd FileType markdown setlocal syntax=text
+augroup END
+
+augroup filetype_sql
+	autocmd!
+	autocmd FileType sql setlocal expandtab
+	autocmd BufNewFile,BufRead /tmp/sql* setlocal ft=sql
+augroup END
+
+augroup filetype_svncommit
+	autocmd!
+	autocmd FileType svncommit setlocal expandtab
+	autocmd FileType svncommit setlocal tw=76
+augroup END
 
 " Airline
+let g:airline_extensions = ['syntastic', 'tabline']
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tagbar#enabled = 0
 let g:airline#themes#base16#constant = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -165,6 +214,23 @@ autocmd VimEnter * call AirlineInit()
 let g:ctrlp_map = ''
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = ''
+let g:ctrlp_extensions = ['tag']
+" Set delay to prevent extra search
+let g:ctrlp_lazy_update = 350
+" Set no file limit, we are building a big project
+let g:ctrlp_max_files = 0
+
+if !has('python')
+	echo 'In order to use pymatcher plugin, you need +python compiled vim'
+else
+	let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
+
+" If ag is available use it as filename list generator instead of 'find'
+if executable("ag")
+	set grepprg=ag\ --nogroup\ --nocolor
+	let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+endif
 " /CtrlP
 
 " Syntastic
@@ -173,6 +239,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_skip_checks = 0
 " /Syntastic
 
 " Supertab
