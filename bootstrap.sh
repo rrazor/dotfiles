@@ -13,6 +13,7 @@ function doIt() {
 	      --exclude "bootstrap.sh"          \
 	      --exclude "compare.sh"            \
 	      --exclude "README.md"             \
+	      --exclude "iterm-colors"          \
 	      --exclude "mailmate-keybindings/" \
 	      -a -v -u . ~
 
