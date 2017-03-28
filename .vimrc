@@ -8,7 +8,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'ivalkeen/vim-ctrlp-tjump'
@@ -197,6 +198,7 @@ augroup END
 " Airline
 let g:airline_extensions = ['syntastic', 'tabline']
 let g:airline_powerline_fonts = 1
+let g:airline_theme='base16'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#themes#base16#constant = 1
