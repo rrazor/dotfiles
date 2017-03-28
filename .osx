@@ -1,7 +1,9 @@
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 25
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 #defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu" "/System/Library/CoreServices/Menu Extras/User.menu"
 defaults write com.apple.screencapture disable-shadow -bool true
 #sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 sudo killall SystemUIServer
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist

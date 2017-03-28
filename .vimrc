@@ -18,14 +18,15 @@ Plugin 'rking/ag.vim'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'bufkill.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'nelstrom/vim-markdown-folding'
 call vundle#end()
 
 filetype plugin indent on
 " End Vundle
 
-filetype plugin indent off  " Well-meaning features but ruin formatoptions=
+"filetype indent off  " Well-meaning features but ruin formatoptions=
 
-set modelines=0       " block exploits (http://goo.gl/1jsAt)
+"set modelines=0       " block exploits (http://goo.gl/1jsAt)
 set tabstop=4         " CW standard, 4 spaces to a tab
 set shiftwidth=4      " see above
 set noexpandtab       " use hard tabs
@@ -174,12 +175,12 @@ augroup filetype_text
 	autocmd FileType text setlocal nowrap
 augroup END
 
-augroup filetype_markdown
-	autocmd!
-	autocmd FileType markdown setlocal expandtab
-	autocmd FileType markdown setlocal nowrap
-	autocmd FileType markdown setlocal syntax=text
-augroup END
+"augroup filetype_markdown
+"	autocmd!
+"	autocmd FileType markdown setlocal expandtab
+"	autocmd FileType markdown setlocal nowrap
+"	autocmd FileType markdown setlocal syntax=text
+"augroup END
 
 augroup filetype_sql
 	autocmd!
@@ -221,9 +222,9 @@ let g:ctrlp_lazy_update = 350
 let g:ctrlp_max_files = 0
 
 if !has('python')
-	echo 'In order to use pymatcher plugin, you need +python compiled vim'
+	" echo 'In order to use pymatcher plugin, you need +python compiled vim'
 else
-	let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+	" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
 
 " If ag is available use it as filename list generator instead of 'find'
@@ -246,3 +247,16 @@ let g:syntastic_skip_checks = 0
 let g:SuperTabLongestHighlight = 1
 let g:SuperTabCrMapping = 1
 " /Supertab
+
+" Tabular
+nmap <leader>=<space> :Tabularize / = <CR>
+vmap <leader>=<space> :Tabularize / = <CR>
+nmap <leader>=> :Tabularize / => <CR>
+vmap <leader>=> :Tabularize / => <CR>
+nmap <leader>: :Tabularize /:\zs<CR>
+vmap <leader>: :Tabularize /:\zs<CR>
+" /Tabular
+
+" Markdown
+let g:markdown_fenced_languages = [ 'html', 'python', 'bash=sh', 'js=javascript' ]
+" /Markdown

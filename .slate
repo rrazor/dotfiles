@@ -9,20 +9,20 @@ config resizePercentOf screenSize
 alias hyper ctrl;shift;alt;cmd
 
 # Push Bindings
-bind g:${hyper}  push left  bar-resize:screenSizeX*2/3
+bind g:${hyper}  push left  bar-resize:screenSizeX*7/12
 bind h:${hyper}  push left  bar-resize:screenSizeX/2
 bind y:${hyper}  push left  bar-resize:screenSizeX/2
 bind j:${hyper}  push down  bar-resize:screenSizeY/2
 bind k:${hyper}  push up    bar-resize:screenSizeY/2
 bind l:${hyper}  push right bar-resize:screenSizeX/2
-bind ;:${hyper}  push right bar-resize:screenSizeX*2/3
+bind ;:${hyper}  push right bar-resize:screenSizeX*7/12
 bind f:${hyper}  push left  bar-resize:screenSizeX
 
 # Window Hints
 bind esc:cmd hint
 
 # Grid
-bind space:${hyper} grid padding:5 1920x1200:6,4 1680x1050:6,4
+bind space:${hyper} grid padding:5 1920x1200:8,4 1680x1050:6,4
 
 # Restart slate
 bind r:${hyper} relaunch
