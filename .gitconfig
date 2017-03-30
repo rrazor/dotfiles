@@ -20,3 +20,5 @@
 	required = true
 [credential]
 	helper = osxkeychain
+[diff]
+	tool = vimdiff
