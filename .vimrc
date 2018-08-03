@@ -7,19 +7,21 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
-Plugin 'ivalkeen/vim-ctrlp-tjump'
-Plugin 'scrooloose/syntastic'
-Plugin 'ervandew/supertab'
-Plugin 'rking/ag.vim'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'bling/vim-airline'
 Plugin 'bufkill.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'ervandew/supertab'
+Plugin 'gmarik/Vundle.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'hashivim/vim-terraform'
+Plugin 'ivalkeen/vim-ctrlp-tjump'
 Plugin 'nelstrom/vim-markdown-folding'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 call vundle#end()
 
 filetype plugin indent on
@@ -30,7 +32,7 @@ filetype plugin indent on
 "set modelines=0       " block exploits (http://goo.gl/1jsAt)
 set tabstop=4         " CW standard, 4 spaces to a tab
 set shiftwidth=4      " see above
-set noexpandtab       " use hard tabs
+set expandtab         " use spaces
 set encoding=utf-8
 set scrolloff=3       " scroll before ends of window
 set autoindent
@@ -198,7 +200,6 @@ augroup END
 " Airline
 let g:airline_extensions = ['syntastic', 'tabline']
 let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#themes#base16#constant = 1
@@ -262,3 +263,11 @@ vmap <leader>: :Tabularize /:\zs<CR>
 " Markdown
 let g:markdown_fenced_languages = [ 'html', 'python', 'bash=sh', 'js=javascript' ]
 " /Markdown
+
+" Ale
+let g:ale_linters = {
+\   'javascript': ['standard'],
+\}
+let g:ale_javascript_standard_executable = 'node_modules/.bin/semistandard'
+let g:ale_javascript_standard_use_global = 1
+" /Ale
