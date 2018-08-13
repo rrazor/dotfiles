@@ -8,6 +8,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/pear:~/bin
 
 export EDITOR=vim
 export VISUAL=vim
+export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT="%F %T "
 
 build_prompt () {
@@ -25,13 +26,16 @@ build_prompt () {
 	local git_color="\[\e[0;35m\]"
 	local git_prompt="${git_color}\$(git_prompt_text)${reset_color}"
 
+	local aws_color="\[\e[\$(aws_prompt_color)m\]"
+	local aws_prompt="${aws_color}\$(aws_prompt_text)${reset_color}"
+
 	local vim_color="\[\e[4;33m\]"
 	local vim_prompt="${vim_color}\$(vim_prompt_text)${reset_color}"
 
 	local prompt_color="\[\e[\$(prompt_char_color)m\]"
 	local prompt_prompt="${prompt_color}\$(prompt_char_text)${reset_color}"
 
-	echo "${user_prompt}${at_prompt}${host_prompt}${git_prompt}\$(vim_prompt_padding)${vim_prompt}${prompt_prompt} "
+	echo "${user_prompt}${at_prompt}${host_prompt}${git_prompt}${aws_prompt}\$(vim_prompt_padding)${vim_prompt}${prompt_prompt} "
 }
 
 prompt_char_color () {
@@ -95,6 +99,22 @@ git_prompt_text () {
 	local git_branch=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
 
 	echo " (${git_branch})"
+}
+
+aws_prompt_color () {
+    if [[ $AWS_PROFILE = *"Prod"* ]]; then
+		printf "1;31"
+    elif [[ $AWS_PROFILE = *"Staging"* ]]; then
+        printf "0;34"
+	else
+		printf "0;90"
+	fi
+}
+
+aws_prompt_text () {
+    if [ ! -z "$AWS_PROFILE" ]; then
+        echo " (AWS=${AWS_PROFILE})"
+    fi
 }
 
 export PS1=$(build_prompt)
