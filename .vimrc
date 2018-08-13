@@ -197,6 +197,12 @@ augroup filetype_svncommit
 	autocmd FileType svncommit setlocal tw=76
 augroup END
 
+augroup filetype_terraform
+	autocmd!
+	autocmd FileType terraform setlocal sw=4
+	autocmd FileType terraform setlocal ts=4
+augroup END
+
 " Airline
 let g:airline_extensions = ['syntastic', 'tabline']
 let g:airline_powerline_fonts = 1
