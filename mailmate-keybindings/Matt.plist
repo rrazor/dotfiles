@@ -1,9 +1,10 @@
 {
 	"g" = {
-		"a" = ("goToMailbox:", "C4B7DB3E-74DC-4E8C-8B18-C7F7C69620A1", "makeFirstResponder:", "mainOutline");
+        "a" = ("goToMailbox:", "C75D2B4A-8DE1-45FC-BE39-82F39DECC712", "makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
 		"e" = ("makeFirstResponder:", "messageView");
 		"g" = ("makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
-		"i" = ("goToMailbox:", "INBOX", "makeFirstResponder:", "mainOutline");
+        "i" = ("goToMailbox:", "D92D6BF1-5455-4FDD-AFDD-F64366FD6487", "makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
+        "I" = ("goToMailbox:", "INBOX", "makeFirstResponder:", "mainOutline", "selectFirstMessageRow:");
 		"m" = "goToMailbox:";
 		"u" = ("goToMailbox:", "EA2F402D-416F-41F6-83C2-F4A3923EB706", "makeFirstResponder:", "mainOutline");
 	};
