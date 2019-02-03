@@ -203,6 +203,13 @@ augroup filetype_terraform
 	autocmd FileType terraform setlocal ts=4
 augroup END
 
+augroup filetype_python
+	autocmd!
+	autocmd FileType python setlocal sw=4
+	autocmd FileType python setlocal ts=4
+	autocmd FileType python setlocal expandtab
+augroup END
+
 " Airline
 let g:airline_extensions = ['syntastic', 'tabline']
 let g:airline_powerline_fonts = 1

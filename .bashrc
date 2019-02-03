@@ -96,7 +96,7 @@ git_prompt_text () {
 		return 0
 	fi
 
-	local git_branch=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
+	local git_branch=$(git rev-parse --abbrev-ref HEAD)
 
 	echo " (${git_branch})"
 }
@@ -123,6 +123,7 @@ alias ls="/bin/ls -F"
 alias du="du -cks"
 alias vi="vim"
 alias reconf="cd ..; aclocal; autoheader; autoconf; automake -a; ./configure; make clean; make; cd src"
+alias newpw="pwgen -n 32 1 | tr -d '\n' | pbcopy"
 
 case "$TERM" in
 xterm*|rxvt*)

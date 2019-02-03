@@ -20,3 +20,5 @@
 	required = true
 [diff]
 	tool = vimdiff
+[core]
+	autocrlf = input
